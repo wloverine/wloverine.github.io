@@ -81,14 +81,14 @@
 
 <meta name="description" content="业务情景 两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。 后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上">
 <meta property="og:type" content="article">
-<meta property="og:title" content="my first blog">
+<meta property="og:title" content="记一次spark大表join问题">
 <meta property="og:url" content="http://yoursite.com/2019/08/23/my-first-blog/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="业务情景 两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。 后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-08-23T08:04:28.850Z">
+<meta property="og:updated_time" content="2019-08-23T08:12:20.281Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="my first blog">
+<meta name="twitter:title" content="记一次spark大表join问题">
 <meta name="twitter:description" content="业务情景 两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。 后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上">
 
 
@@ -125,7 +125,7 @@
 
 
 
-  <title>my first blog | Hexo</title>
+  <title>记一次spark大表join问题 | Hexo</title>
   
 
 
@@ -249,7 +249,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">my first blog</h1>
+          <h1 class="post-title" itemprop="name headline">记一次spark大表join问题</h1>
         
 
         <div class="post-meta">
@@ -315,7 +315,7 @@
 <li>依然沿用之前的广播变量模式，不过不同的是，这次直接在spark里面，利用spark2.2之后的hint特性，显示指定join的方式:<br><code>select  /*+ broadcast(table)/ from ...</code><br>这种方式会无视<code>spark.sql.autoBroadcastJoinThreshold</code>默认的10M，对于两张表中较小的那张进行广播变量，如果广播变量超时了，记得将<code>spark.sql.broadcastTimeout</code>的时间设高一点，可以设为600，默认是300(单位是s)。这第一种方式可以成功解决上面的问题，并且spark任务的执行时间也要比自己手动广播变量进行map join要来的快(具体快的原因还不清楚，可能得益于sparksql的底层优化).</li>
 <li>第二种方法，我这里将大表进行了repartition,分区数从原先的8100换成了300，然后再正常进行join，也没有报错，并且运行时间也和第一种方式差不多。</li>
 </ol>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
 <li>本文的场景不是典型的大表join小表，更接近于大表join中表，两张表的数据量差异并不是特别大，而且广播变量的开销其实也不小，所以，在这种情况下，broadcast join和shuffle hash join的运行时间相差不大。</li>
 <li>这里留了个疑问，为什么第二种方法，我repartition之后，两表进行join，就不会报错，难道两个分区数量相差很大的表连接就会产生这种错误吗？</li>
 </ol>
@@ -339,22 +339,6 @@
       
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2019/08/23/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-          </div>
-        </div>
       
 
       
@@ -428,7 +412,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -465,7 +449,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#业务情景"><span class="nav-number">1.</span> <span class="nav-text">业务情景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题修复"><span class="nav-number">2.</span> <span class="nav-text">问题修复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#经过多次尝试，终于找到了两种方式可以解决此问题。"><span class="nav-number">2.0.1.</span> <span class="nav-text">经过多次尝试，终于找到了两种方式可以解决此问题。</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.1.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#业务情景"><span class="nav-number">1.</span> <span class="nav-text">业务情景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题修复"><span class="nav-number">2.</span> <span class="nav-text">问题修复</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#经过多次尝试，终于找到了两种方式可以解决此问题。"><span class="nav-number">2.0.1.</span> <span class="nav-text">经过多次尝试，终于找到了两种方式可以解决此问题。</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></div>
             
 
           </div>
@@ -672,3 +656,5 @@
 
 </body>
 </html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
