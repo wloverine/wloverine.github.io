@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="en">
+<html class="theme-next pisces use-motion" lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -97,7 +97,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -235,7 +235,7 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/23/my-first-blog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="wloverine">
       <meta itemprop="description" content>
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
@@ -301,17 +301,23 @@
       
         <h2 id="业务情景"><a href="#业务情景" class="headerlink" title="业务情景"></a>业务情景</h2><ul>
 <li>两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。</li>
-<li>后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上差多少，结果，数据能成功跑完，但是spark任务在结束之后，报了错误：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">19/08/22 15:40:22 ERROR client.TransportResponseHandler: Still have 1 requests outstanding when connection from /192.168.2.12:56274 is closed</span><br><span class="line">19/08/22 15:40:22 ERROR client.TransportClient: Failed to send RPC 4801162101817174823 to /192.168.2.14:43434: java.nio.channels.ClosedChannelException</span><br><span class="line">java.nio.channels.ClosedChannelException</span><br><span class="line">	at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source)</span><br><span class="line">19/08/22 15:40:22 INFO storage.BlockManagerInfo: Removed broadcast_8_piece0 on s2:39066 in memory (size: 809.3 KB, free: 5.2 GB)</span><br><span class="line">19/08/22 15:40:22 WARN storage.BlockManagerMaster: Failed to remove broadcast 8 with removeFromMaster = true - Failed to send RPC 8112168140978160966 to /192.168.2.15:58680: java.nio.channels.ClosedChannelException</span><br><span class="line">java.io.IOException: Failed to send RPC 8112168140978160966 to /192.168.2.15:58680: java.nio.channels.ClosedChannelException</span><br></pre></td></tr></table></figure>
-
-</li>
+<li>后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上差多少，结果，数据能成功跑完，但是spark任务在结束之后，报了错误：<pre><code>19/08/22 15:40:22 ERROR client.TransportResponseHandler: Still have 1 requests outstanding when connection from /192.168.2.12:56274 is closed
+19/08/22 15:40:22 ERROR client.TransportClient: Failed to send RPC 4801162101817174823 to /192.168.2.14:43434: java.nio.channels.ClosedChannelException
+java.nio.channels.ClosedChannelException
+ at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source)
+19/08/22 15:40:22 INFO storage.BlockManagerInfo: Removed broadcast_8_piece0 on s2:39066 in memory (size: 809.3 KB, free: 5.2 GB)
+19/08/22 15:40:22 WARN storage.BlockManagerMaster: Failed to remove broadcast 8 with removeFromMaster = true - Failed to send RPC 8112168140978160966 to /192.168.2.15:58680: java.nio.channels.ClosedChannelException
+java.io.IOException: Failed to send RPC 8112168140978160966 to /192.168.2.15:58680: java.nio.channels.ClosedChannelException</code></pre>此时的spark任务已经结束，状态为success，并且最终join后的数据也成功入库了。</li>
+<li>网上大部分的解决方案都是修改yarn-site.xml文件的两个参数，但是并没有奏效：<pre><code>&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.pmem-check-enabled&lt;/name&gt;
+  &lt;value&gt;false&lt;/value&gt;
+&lt;/property&gt;
+&lt;property&gt;
+  &lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;/name&gt;
+  &lt;value&gt;false&lt;/value&gt;
+&lt;/property&gt;</code></pre><h2 id="问题修复"><a href="#问题修复" class="headerlink" title="问题修复"></a>问题修复</h2><h4 id="经过多次尝试，终于找到了两种方式可以解决此问题。"><a href="#经过多次尝试，终于找到了两种方式可以解决此问题。" class="headerlink" title="经过多次尝试，终于找到了两种方式可以解决此问题。"></a>经过多次尝试，终于找到了两种方式可以解决此问题。</h4></li>
 </ul>
-<p>此时的spark任务已经结束，状态为success，并且最终join后的数据也成功入库了。</p>
-<ul>
-<li>网上大部分的解决方案都是修改yarn-site.xml文件的两个参数，但是并没有奏效：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.nodemanager.pmem-check-enabled&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;false&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br><span class="line">  &lt;property&gt;</span><br><span class="line">    &lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;/name&gt;</span><br><span class="line">    &lt;value&gt;false&lt;/value&gt;</span><br><span class="line">  &lt;/property&gt;</span><br></pre></td></tr></table></figure>
-
-</li>
-</ul>
-<h2 id="问题修复"><a href="#问题修复" class="headerlink" title="问题修复"></a>问题修复</h2><h4 id="经过多次尝试，终于找到了两种方式可以解决此问题。"><a href="#经过多次尝试，终于找到了两种方式可以解决此问题。" class="headerlink" title="经过多次尝试，终于找到了两种方式可以解决此问题。"></a>经过多次尝试，终于找到了两种方式可以解决此问题。</h4><ol>
+<ol>
 <li>依然沿用之前的广播变量模式，不过不同的是，这次直接在spark里面，利用spark2.2之后的hint特性，显示指定join的方式:<br><code>select  /*+ broadcast(table)/ from ...</code><br>这种方式会无视<code>spark.sql.autoBroadcastJoinThreshold</code>默认的10M，对于两张表中较小的那张进行广播变量，如果广播变量超时了，记得将<code>spark.sql.broadcastTimeout</code>的时间设高一点，可以设为600，默认是300(单位是s)。这第一种方式可以成功解决上面的问题，并且spark任务的执行时间也要比自己手动广播变量进行map join要来的快(具体快的原因还不清楚，可能得益于sparksql的底层优化).</li>
 <li>第二种方法，我这里将大表进行了repartition,分区数从原先的8100换成了300，然后再正常进行join，也没有报错，并且运行时间也和第一种方式差不多。</li>
 </ol>
@@ -401,8 +407,8 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <p class="site-author-name" itemprop="name">John Doe</p>
-              <p class="site-description motion-element" itemprop="description"></p>
+              <p class="site-author-name" itemprop="name">wloverine</p>
+              <p class="site-description motion-element" itemprop="description">To be the change you can see in the world</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -473,7 +479,7 @@
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">wloverine</span>
 
   
 </div>
@@ -487,7 +493,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
 
 
@@ -586,6 +592,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
