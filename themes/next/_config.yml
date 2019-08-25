@@ -45,7 +45,7 @@ rss:
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
-  #since: 2015
+  since: 2019
 
   # Icon between year and copyright info.
   icon: user
@@ -94,7 +94,7 @@ index_with_subtitle: true
 menu:
   首页: / || home
   #about: /about/ || user
-  #tags: /tags/ || tags
+  标签: /tags/ || tags
   分类: /categories/ || th
   存档: /archives/ || archive
   #schedule: /schedule/ || calendar
@@ -130,7 +130,7 @@ social:
   GitHub: https://github.com/wloverine || github
   #E-Mail: mailto:yourname@gmail.com || envelope
   #Google: https://plus.google.com/yourname || google
-  #Twitter: https://twitter.com/yourname || twitter
+  Twitter: https://twitter.com/wloverine2 || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
   #VK Group: https://vk.com/yourname || vk
   #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
@@ -217,7 +217,7 @@ excerpt_description: true
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
   enable: false
-  length: 50
+  length: 100
 
 # Post meta display settings
 post_meta:
@@ -230,7 +230,7 @@ post_meta:
 # Dependencies: https://github.com/willin/hexo-wordcount
 post_wordcount:
   item_text: true
-  wordcount: false
+  wordcount: true
   min2read: false
   totalcount: false
   separated_meta: true

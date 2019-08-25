@@ -5,6 +5,8 @@ type: "categories"
 categories: 
 - Spark
 tags:
+- Spark
+- Hive
 ---
 ## 业务情景
 - 两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。
