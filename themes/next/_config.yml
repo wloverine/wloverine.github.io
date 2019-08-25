@@ -111,7 +111,7 @@ menu_icons:
 # ---------------------------------------------------------------
 
 # Schemes
-#scheme: Muse
+# scheme: Muse
 # scheme: Mist
 scheme: Pisces
 # scheme: Gemini
@@ -129,7 +129,7 @@ scheme: Pisces
 social:
   GitHub: https://github.com/wloverine || github
   #E-Mail: mailto:yourname@gmail.com || envelope
-  #Google: https://plus.google.com/yourname || google
+  # Google: https://plus.google.com/wloverine || google
   Twitter: https://twitter.com/wloverine2 || twitter
   #FB Page: https://www.facebook.com/yourname || facebook
   #VK Group: https://vk.com/yourname || vk
