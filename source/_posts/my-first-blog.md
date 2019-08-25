@@ -1,6 +1,9 @@
 ---
 title: 记一次spark大表join问题
 date: 2019-08-23 15:58:54
+type: "categories"
+categories: 
+- Spark
 tags:
 ---
 ## 业务情景
@@ -28,7 +31,7 @@ java.io.IOException: Failed to send RPC 8112168140978160966 to /192.168.2.15:586
   </property>
 ```
 ## 问题修复
-#### 经过多次尝试，终于找到了两种方式可以解决此问题。
+经过多次尝试，终于找到了两种方式可以解决此问题。
 1. 依然沿用之前的广播变量模式，不过不同的是，这次直接在spark里面，利用spark2.2之后的hint特性，显示指定join的方式:
 ```select  /*+ broadcast(table)/ from ...```
 这种方式会无视```spark.sql.autoBroadcastJoinThreshold	```默认的10M，对于两张表中较小的那张进行广播变量，如果广播变量超时了，记得将```spark.sql.broadcastTimeout```的时间设高一点，可以设为600，默认是300(单位是s)。这第一种方式可以成功解决上面的问题，并且spark任务的执行时间也要比自己手动广播变量进行map join要来的快(具体快的原因还不清楚，可能得益于sparksql的底层优化).
