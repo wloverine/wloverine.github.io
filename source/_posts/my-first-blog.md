@@ -2,7 +2,7 @@
 title: 记一次spark大表join问题
 date: 2019-08-23 15:58:54
 categories: 
-- Spark
+- 写个代码
 tags:
 - Spark
 - Hive
