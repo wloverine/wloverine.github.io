@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>《双城之战》观后感</title>
+    <url>/2021/11/21/%E3%80%8A%E5%8F%8C%E5%9F%8E%E4%B9%8B%E6%88%98%E3%80%8B%E8%A7%82%E5%90%8E%E6%84%9F/</url>
+    <content><![CDATA[<p><img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211121221102.png" alt="image-20211121221100468"></p>
+<ul>
+<li><p>作为一个s3就开始加入联盟的老玩家，已经在峡谷中征战上万场，但是对英雄的背景故事了解甚少，仅仅是通过英雄介绍能知道个大概。而最近拳头出品的动画电影，更是让我对其中的英雄有了更深刻的了解。</p>
+<span id="more"></span></li>
+<li><p>先说说金克斯，金克斯是我比较喜欢的一个ad英雄，装备成型后打团十分舒适。我一直把金克斯当做英雄联盟版的小丑女，一个“疯子”。双城之战中，虽然交代了她从一个可爱的小女孩转变为一个小魔头的原因，但是个人感觉有点牵强。养父范德尔被希尔科害死，自己就因为姐姐蔚的一句责备就开始黑化加入希尔科一边，人设似乎太自私了点，最后还来了发究极死神飞弹直接炸出第二季。相比下来，蔚从始至终都要成熟懂事得多，而且一直很疼爱她的妹妹金克斯，并且作为少年小队的老大，很有责任感和担当</p>
+<img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211121221133.png" alt="image-20211121221132393" style="zoom:50%;" /></li>
+<li><p>其他人物，比如杰斯、维克托的刻化都比较成功，维克托最后更是血肉苦弱，机械飞升，加入了光荣的进化，玩游戏的时候哪能想到三只手还有这样的背景故事。另外，剧中的原创人物希尔科也刻化的非常成功，有血有肉，在那个脏乱的下城黑巷中成为一代枭雄。</p>
+</li>
+<li><p>总体来说，这部作品的第一季还是相当不错的，拳头不愧是做电影的公司，期待第二部的到来。</p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>观后感</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Guide</title>
+    <url>/2019/11/26/hexo-guide/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>A fast, simple &amp; powerful blog framework, powered by Node.js.</p>
+</blockquote>
+<h2 id="Next主题"><a href="#Next主题" class="headerlink" title="Next主题"></a>Next主题</h2><p><strong>Hexo拥有很多精美主题，我们用的是Next。</strong></p>
+<h3 id="Next-各版本的仓库"><a href="#Next-各版本的仓库" class="headerlink" title="Next 各版本的仓库"></a>Next 各版本的仓库</h3><table>
+<thead>
+<tr>
+<th>年份</th>
+<th>版本</th>
+<th>仓库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014 ~ 2017</td>
+<td>v5</td>
+<td><a href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</a></td>
+</tr>
+<tr>
+<td>2018 ~ 2019</td>
+<td>v6 ~ v7</td>
+<td><a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a></td>
+</tr>
+<tr>
+<td>2020</td>
+<td>v8</td>
+<td><a href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a></td>
+</tr>
+</tbody></table>
+<h3 id="Next与Hexo版本适配关系"><a href="#Next与Hexo版本适配关系" class="headerlink" title="Next与Hexo版本适配关系"></a>Next与Hexo版本适配关系</h3><p><img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211105133647.png" alt="image-20211105133645530"></p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><ul>
+<li><p>代码地址（hexo相关配置在hexo分支上，发布分支是master）</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/wloverine/wloverine.github.io</span><br></pre></td></tr></table></figure></li>
+<li><p>本地运行 </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
+<li><p>发布到github</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp; hexo g &amp; hexo d</span><br></pre></td></tr></table></figure></li>
+<li><p>写新文章<br>进入博客主目录，输入以下命令</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;新文章&quot;</span></span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="版本升级"><a href="#版本升级" class="headerlink" title="版本升级"></a>版本升级</h2></li>
+</ul>
+<h3 id="全局升级-Hexo-版本"><a href="#全局升级-Hexo-版本" class="headerlink" title="全局升级 Hexo 版本"></a>全局升级 Hexo 版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 清理NPM缓存</span></span><br><span class="line">$ npm cache clean -f</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局安装版本检测、版本升级工具</span></span><br><span class="line">$ npm install -g npm-check</span><br><span class="line">$ npm install -g npm-upgrade</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局检测哪些模块可以升级，这里可以根据打印的提示信息，手动安装最新版本的模块</span></span><br><span class="line">$ npm-check -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局更新模块</span></span><br><span class="line">$ npm update -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局安装或更新Hexo的最新版本</span></span><br><span class="line">$ npm install --global hexo</span><br></pre></td></tr></table></figure>
+
+<h3 id="博客升级Hexo版本"><a href="#博客升级Hexo版本" class="headerlink" title="博客升级Hexo版本"></a>博客升级Hexo版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入博客的根目录</span></span><br><span class="line">$ <span class="built_in">cd</span> /blog-root</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测Hexo哪些模块可以升级</span></span><br><span class="line">$ npm-check</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除package-lock.json</span></span><br><span class="line"><span class="comment"># rm -rf package-lock.json</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新package.json</span></span><br><span class="line">$ npm-upgrade</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除整个模块目录，这样可以避免很多坑</span></span><br><span class="line">$ rm -rf node_modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新Hexo的模块</span></span><br><span class="line">$ npm update --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 若出现依赖的问题，用以下命令检查一下，然后把报错的统一修复一下即可</span></span><br><span class="line">$ npm audix</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者强制更新</span></span><br><span class="line">$ npm update --save --force</span><br></pre></td></tr></table></figure>
+
+<h3 id="升级Next主题"><a href="#升级Next主题" class="headerlink" title="升级Next主题"></a>升级Next主题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入主题文件夹</span></span><br><span class="line"><span class="built_in">cd</span> themes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份旧版数据</span></span><br><span class="line">mv next next-bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉取新版本代码（由于已经将next主题文件夹内的配置文件分离到根目录，只需拉取代码完全替代老版代码即可，无需修改配置文件）</span></span><br><span class="line">git <span class="built_in">clone</span> xxx</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>蒜苔肉丝</title>
+    <url>/2021/11/28/%E8%92%9C%E8%8B%94%E8%82%89%E4%B8%9D/</url>
+    <content><![CDATA[<blockquote>
+<p>今天要做的这道菜是蒜苔肉丝，配上大米饭可谓是绝配了，十分的下饭。</p>
+</blockquote>
+<img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211128003923.png" alt="image-20211128003343662" style="zoom: 33%;" />
+
+<h2 id="食材准备"><a href="#食材准备" class="headerlink" title="食材准备"></a>食材准备</h2><ul>
+<li>肉丝三两</li>
+<li>蒜苔一捆</li>
+</ul>
+<h2 id="下锅前准备"><a href="#下锅前准备" class="headerlink" title="下锅前准备"></a>下锅前准备</h2><ol>
+<li>将肉丝洗净挤干水分，放入碗中，碗中依次倒入少许盐、胡椒粉、料酒、老抽、玉米淀粉（为了让肉的口感更加嫩滑）、食用油、少许清水，然后拌匀，腌制备用。</li>
+<li>蒜苔去头去尾，切成小段，用清水和食用小苏打清洗，捞出控干水分备用。</li>
+<li>切少许生姜和蒜备用。</li>
+</ol>
+<h2 id="开始制作"><a href="#开始制作" class="headerlink" title="开始制作"></a>开始制作</h2><ol>
+<li>起锅烧油，油温七成热，下入腌制好的肉丝以及姜蒜，煸出香味，待肉丝变色后捞出。</li>
+<li>蒜苔下锅，并加入少许明油，中大火炒1min，之后加入肉丝，继续炒1min，再加入少许清水从锅边淋入，转至小火焖五分钟。五分钟后，开大火收汁，此时再加入适量的盐和生抽调味，继续收汁至汤汁浓稠状就可以出锅了。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>做菜</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>记一次spark大表join问题</title>
+    <url>/2019/08/23/my-first-blog/</url>
+    <content><![CDATA[<h2 id="业务情景"><a href="#业务情景" class="headerlink" title="业务情景"></a>业务情景</h2><ul>
+<li>两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。</li>
+<li> 后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上差多少，结果，数据能成功跑完，但是spark任务在结束之后，报了错误：<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> ERROR client.TransportResponseHandler: Still have <span class="number">1</span> requests outstanding when connection from /<span class="number">192.168.2.12:56274</span> is closed</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> ERROR client.TransportClient: Failed to send RPC <span class="number">4801162101817174823</span> to /<span class="number">192.168.2.14:43434</span>: java.nio.channels.ClosedChannelException</span><br><span class="line"><span class="attribute">java</span>.nio.channels.ClosedChannelException</span><br><span class="line">	<span class="attribute">at</span> io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source)</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> INFO storage.BlockManagerInfo: Removed broadcast_<span class="number">8</span>_piece<span class="number">0</span> <span class="literal">on</span> s<span class="number">2</span>:<span class="number">39066</span> in memory (size: <span class="number">809</span>.<span class="number">3</span> KB, free: <span class="number">5</span>.<span class="number">2</span> GB)</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> WARN storage.BlockManagerMaster: Failed to remove broadcast <span class="number">8</span> with removeFromMaster = true - Failed to send RPC <span class="number">8112168140978160966</span> to /<span class="number">192.168.2.15:58680</span>: java.nio.channels.ClosedChannelException</span><br><span class="line"><span class="attribute">java</span>.io.IOException: Failed to send RPC <span class="number">8112168140978160966</span> to /<span class="number">192.168.2.15:58680</span>: java.nio.channels.ClosedChannelException</span><br></pre></td></tr></table></figure>
+此时的spark任务已经结束，状态为success，并且最终join后的数据也成功入库了。<span id="more"></span></li>
+<li>网上大部分的解决方案都是修改yarn-site.xml文件的两个参数，但是并没有奏效：<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.pmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.vmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="问题修复"><a href="#问题修复" class="headerlink" title="问题修复"></a>问题修复</h2>经过多次尝试，终于找到了两种方式可以解决此问题。</li>
+</ul>
+<ol>
+<li>依然沿用之前的广播变量模式，不过不同的是，这次直接在spark里面，利用spark2.2之后的hint特性，显示指定join的方式:<br><code>select  /*+ broadcast(table)/ from ...</code><br> 这种方式会无视<code>spark.sql.autoBroadcastJoinThreshold    </code>默认的10M，对于两张表中较小的那张进行广播变量，如果广播变量超时了，记得将<code>spark.sql.broadcastTimeout</code>的时间设高一点，可以设为600，默认是300(单位是s)。这第一种方式可以成功解决上面的问题，并且spark任务的执行时间也要比自己手动广播变量进行map join要来的快(具体快的原因还不清楚，可能得益于sparksql的底层优化).</li>
+<li>第二种方法，我这里将大表进行了repartition,分区数从原先的8100换成了300，然后再正常进行join，也没有报错，并且运行时间也和第一种方式差不多。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>本文的场景不是典型的大表join小表，更接近于大表join中表，两张表的数据量差异并不是特别大，而且广播变量的开销其实也不小，所以，在这种情况下，broadcast join和shuffle hash join的运行时间相差不大。</li>
+<li>这里留了个疑问，为什么第二种方法，我repartition之后，两表进行join，就不会报错，难道两个分区数量相差很大的表连接就会产生这种错误吗？</li>
+</ol>
+]]></content>
+      <categories>
+        <category>Spark</category>
+      </categories>
+      <tags>
+        <tag>Spark</tag>
+        <tag>Hive</tag>
+      </tags>
+  </entry>
+</search>
