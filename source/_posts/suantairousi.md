@@ -4,10 +4,13 @@ date: 2021-11-28 00:09:48
 categories: 
 - 做菜
 ---
+
+
+<div align="center"><img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211128003923.png" alt="image-20211128003343662" style="zoom: 45%;" /></div>
+
+<!--more-->
+
 > 今天要做的这道菜是蒜苔肉丝，配上大米饭可谓是绝配了，十分的下饭。
-
-<img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211128003923.png" alt="image-20211128003343662" style="zoom: 33%;" />
-
 ## 食材准备
 - 肉丝三两
 - 蒜苔一捆
