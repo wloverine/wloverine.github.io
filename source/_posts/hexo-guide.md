@@ -1,6 +1,8 @@
 ---
 title: Hexo Guide
 date: 2019-11-26 21:57:41
+categories: 
+- code
 tags:
 - hexo
 ---
