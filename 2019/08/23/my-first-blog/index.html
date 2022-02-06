@@ -28,7 +28,7 @@
 <meta property="og:description" content="业务情景 两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。  后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间">
 <meta property="og:locale">
 <meta property="article:published_time" content="2019-08-23T07:58:54.000Z">
-<meta property="article:modified_time" content="2021-11-27T16:55:43.803Z">
+<meta property="article:modified_time" content="2022-02-06T05:28:26.587Z">
 <meta property="article:author" content="wloverine">
 <meta property="article:tag" content="Spark">
 <meta property="article:tag" content="Hive">
@@ -147,7 +147,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -225,7 +225,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-11-28 00:55:43" itemprop="dateModified" datetime="2021-11-28T00:55:43+08:00">2021-11-28</time>
+        <time title="Modified: 2022-02-06 13:28:26" itemprop="dateModified" datetime="2022-02-06T13:28:26+08:00">2022-02-06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -233,7 +233,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%86%99%E4%B8%AA%E4%BB%A3%E7%A0%81/" itemprop="url" rel="index"><span itemprop="name">写个代码</span></a>
+          <a href="/categories/code/" itemprop="url" rel="index"><span itemprop="name">code</span></a>
         </span>
     </span>
 
