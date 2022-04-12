@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Linux cluster setup</title>
+    <url>/2022/04/12/Linux-cluster-setup/</url>
+    <content><![CDATA[<h1 id="搭建Linux集群"><a href="#搭建Linux集群" class="headerlink" title="搭建Linux集群"></a>搭建Linux集群</h1><ul>
+<li>当前主力机是m1芯片的macbook pro，所以linux镜像用的是arm64位的centos7，虚拟机软件选用VMware Fusion。本次目标搭建三台虚拟机，实现网络互通。</li>
+</ul>
+<span id="more"></span>
+
+<h2 id="搭建准备"><a href="#搭建准备" class="headerlink" title="搭建准备"></a>搭建准备</h2><ul>
+<li>vmware</li>
+<li>Centos7 arm64镜像</li>
+<li>Royal TSX（用于管理SSH连接）</li>
+</ul>
+<h2 id="具体实施"><a href="#具体实施" class="headerlink" title="具体实施"></a>具体实施</h2><ol>
+<li><p>直接把镜像拖入vmware，开始进行安装（不要选择最小化安装）。</p>
+</li>
+<li><p>正常开机之后，一般是无法正常联网，这个时候我们首先选择桥接模式的wifi模式，然后可以用<code>dhclient</code>来给当前虚拟机一个可用的动态ip，注意这个ip每次开机都会变化。也可以自己指定ip。</p>
+</li>
+<li><p>编辑网络配置文件</p>
+<p>需要更改的地方是把BOOTPROTO=dhcp改为static，另外ONBOOT改为yes，然后添加IPADDR、NETMASK、GATEWAY、DNS1。网络可用的表现是虚拟机能正常上网，能和宿主机互相通信。</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens160</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">TYPE</span>=<span class="string">Ethernet</span></span><br><span class="line"><span class="attr">PROXY_METHOD</span>=<span class="string">none</span></span><br><span class="line"><span class="attr">BROWSER_ONLY</span>=<span class="string">no</span></span><br><span class="line"><span class="attr">BOOTPROTO</span>=<span class="string">static</span></span><br><span class="line"><span class="attr">DEFROUTE</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPV4_FAILURE_FATAL</span>=<span class="string">no</span></span><br><span class="line"><span class="attr">IPV6INIT</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPV6_AUTOCONF</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPV6_DEFROUTE</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPV6_FAILURE_FATAL</span>=<span class="string">no</span></span><br><span class="line"><span class="attr">NAME</span>=<span class="string">ens160</span></span><br><span class="line"><span class="attr">UUID</span>=<span class="string">60593f15-8470-433d-933c-c0a1cc25faa3</span></span><br><span class="line"><span class="attr">DEVICE</span>=<span class="string">ens160</span></span><br><span class="line"><span class="attr">ONBOOT</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPADDR</span>=<span class="string">192.168.1.201</span></span><br><span class="line"><span class="attr">NETMASK</span>=<span class="string">255.255.255.0</span></span><br><span class="line"><span class="attr">GATEWAY</span>=<span class="string">192.168.1.1</span></span><br><span class="line"><span class="attr">DNS1</span>=<span class="string">119.29.29.29</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart network.service</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑hostname</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/hostname</span><br></pre></td></tr></table></figure></li>
+<li><p>编辑hosts</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/hosts</span><br></pre></td></tr></table></figure></li>
+<li><p>关闭防火墙</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 临时关闭</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line"><span class="meta">#</span><span class="bash"> 永久关闭</span></span><br><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure></li>
+<li><p>至此，单台虚拟机就准备完毕，这个时候将其关机，然后创建完整克隆，然后再改下克隆机的ip，确保虚拟机之间可以互相通信。</p>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo Guide</title>
     <url>/2019/11/26/hexo-guide/</url>
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
@@ -59,6 +101,33 @@
       </tags>
   </entry>
   <entry>
+    <title>记一次spark大表join问题</title>
+    <url>/2019/08/23/my-first-blog/</url>
+    <content><![CDATA[<h2 id="业务情景"><a href="#业务情景" class="headerlink" title="业务情景"></a>业务情景</h2><ul>
+<li>两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。</li>
+<li> 后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上差多少，结果，数据能成功跑完，但是spark任务在结束之后，报了错误：<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> ERROR client.TransportResponseHandler: Still have <span class="number">1</span> requests outstanding when connection from /<span class="number">192.168.2.12:56274</span> is closed</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> ERROR client.TransportClient: Failed to send RPC <span class="number">4801162101817174823</span> to /<span class="number">192.168.2.14:43434</span>: java.nio.channels.ClosedChannelException</span><br><span class="line"><span class="attribute">java</span>.nio.channels.ClosedChannelException</span><br><span class="line">	<span class="attribute">at</span> io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source)</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> INFO storage.BlockManagerInfo: Removed broadcast_<span class="number">8</span>_piece<span class="number">0</span> <span class="literal">on</span> s<span class="number">2</span>:<span class="number">39066</span> in memory (size: <span class="number">809</span>.<span class="number">3</span> KB, free: <span class="number">5</span>.<span class="number">2</span> GB)</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> WARN storage.BlockManagerMaster: Failed to remove broadcast <span class="number">8</span> with removeFromMaster = true - Failed to send RPC <span class="number">8112168140978160966</span> to /<span class="number">192.168.2.15:58680</span>: java.nio.channels.ClosedChannelException</span><br><span class="line"><span class="attribute">java</span>.io.IOException: Failed to send RPC <span class="number">8112168140978160966</span> to /<span class="number">192.168.2.15:58680</span>: java.nio.channels.ClosedChannelException</span><br></pre></td></tr></table></figure>
+此时的spark任务已经结束，状态为success，并且最终join后的数据也成功入库了。<span id="more"></span></li>
+<li>网上大部分的解决方案都是修改yarn-site.xml文件的两个参数，但是并没有奏效：<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.pmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.vmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="问题修复"><a href="#问题修复" class="headerlink" title="问题修复"></a>问题修复</h2>经过多次尝试，终于找到了两种方式可以解决此问题。</li>
+</ul>
+<ol>
+<li>依然沿用之前的广播变量模式，不过不同的是，这次直接在spark里面，利用spark2.2之后的hint特性，显示指定join的方式:<br><code>select  /*+ broadcast(table)/ from ...</code><br> 这种方式会无视<code>spark.sql.autoBroadcastJoinThreshold    </code>默认的10M，对于两张表中较小的那张进行广播变量，如果广播变量超时了，记得将<code>spark.sql.broadcastTimeout</code>的时间设高一点，可以设为600，默认是300(单位是s)。这第一种方式可以成功解决上面的问题，并且spark任务的执行时间也要比自己手动广播变量进行map join要来的快(具体快的原因还不清楚，可能得益于sparksql的底层优化).</li>
+<li>第二种方法，我这里将大表进行了repartition,分区数从原先的8100换成了300，然后再正常进行join，也没有报错，并且运行时间也和第一种方式差不多。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>本文的场景不是典型的大表join小表，更接近于大表join中表，两张表的数据量差异并不是特别大，而且广播变量的开销其实也不小，所以，在这种情况下，broadcast join和shuffle hash join的运行时间相差不大。</li>
+<li>这里留了个疑问，为什么第二种方法，我repartition之后，两表进行join，就不会报错，难道两个分区数量相差很大的表连接就会产生这种错误吗？</li>
+</ol>
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>Spark</tag>
+        <tag>Hive</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>《双城之战》观后感</title>
     <url>/2021/11/21/shuangchengzhizhan/</url>
     <content><![CDATA[<div align="center"><img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211121221102.png" alt="image-20211121221100468" style="zoom: 80%;"  /></div>
@@ -107,33 +176,6 @@
       </categories>
       <tags>
         <tag>cook</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>记一次spark大表join问题</title>
-    <url>/2019/08/23/my-first-blog/</url>
-    <content><![CDATA[<h2 id="业务情景"><a href="#业务情景" class="headerlink" title="业务情景"></a>业务情景</h2><ul>
-<li>两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。</li>
-<li> 后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上差多少，结果，数据能成功跑完，但是spark任务在结束之后，报了错误：<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> ERROR client.TransportResponseHandler: Still have <span class="number">1</span> requests outstanding when connection from /<span class="number">192.168.2.12:56274</span> is closed</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> ERROR client.TransportClient: Failed to send RPC <span class="number">4801162101817174823</span> to /<span class="number">192.168.2.14:43434</span>: java.nio.channels.ClosedChannelException</span><br><span class="line"><span class="attribute">java</span>.nio.channels.ClosedChannelException</span><br><span class="line">	<span class="attribute">at</span> io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source)</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> INFO storage.BlockManagerInfo: Removed broadcast_<span class="number">8</span>_piece<span class="number">0</span> <span class="literal">on</span> s<span class="number">2</span>:<span class="number">39066</span> in memory (size: <span class="number">809</span>.<span class="number">3</span> KB, free: <span class="number">5</span>.<span class="number">2</span> GB)</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> WARN storage.BlockManagerMaster: Failed to remove broadcast <span class="number">8</span> with removeFromMaster = true - Failed to send RPC <span class="number">8112168140978160966</span> to /<span class="number">192.168.2.15:58680</span>: java.nio.channels.ClosedChannelException</span><br><span class="line"><span class="attribute">java</span>.io.IOException: Failed to send RPC <span class="number">8112168140978160966</span> to /<span class="number">192.168.2.15:58680</span>: java.nio.channels.ClosedChannelException</span><br></pre></td></tr></table></figure>
-此时的spark任务已经结束，状态为success，并且最终join后的数据也成功入库了。<span id="more"></span></li>
-<li>网上大部分的解决方案都是修改yarn-site.xml文件的两个参数，但是并没有奏效：<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.pmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.vmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="问题修复"><a href="#问题修复" class="headerlink" title="问题修复"></a>问题修复</h2>经过多次尝试，终于找到了两种方式可以解决此问题。</li>
-</ul>
-<ol>
-<li>依然沿用之前的广播变量模式，不过不同的是，这次直接在spark里面，利用spark2.2之后的hint特性，显示指定join的方式:<br><code>select  /*+ broadcast(table)/ from ...</code><br> 这种方式会无视<code>spark.sql.autoBroadcastJoinThreshold    </code>默认的10M，对于两张表中较小的那张进行广播变量，如果广播变量超时了，记得将<code>spark.sql.broadcastTimeout</code>的时间设高一点，可以设为600，默认是300(单位是s)。这第一种方式可以成功解决上面的问题，并且spark任务的执行时间也要比自己手动广播变量进行map join要来的快(具体快的原因还不清楚，可能得益于sparksql的底层优化).</li>
-<li>第二种方法，我这里将大表进行了repartition,分区数从原先的8100换成了300，然后再正常进行join，也没有报错，并且运行时间也和第一种方式差不多。</li>
-</ol>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>本文的场景不是典型的大表join小表，更接近于大表join中表，两张表的数据量差异并不是特别大，而且广播变量的开销其实也不小，所以，在这种情况下，broadcast join和shuffle hash join的运行时间相差不大。</li>
-<li>这里留了个疑问，为什么第二种方法，我repartition之后，两表进行join，就不会报错，难道两个分区数量相差很大的表连接就会产生这种错误吗？</li>
-</ol>
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>Spark</tag>
-        <tag>Hive</tag>
       </tags>
   </entry>
 </search>
