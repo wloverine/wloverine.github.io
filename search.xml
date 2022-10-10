@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>clashx白名单</title>
+    <url>/2022/10/10/clashx%E7%99%BD%E5%90%8D%E5%8D%95/</url>
+    <content><![CDATA[<h1 id="clashx设置白名单"><a href="#clashx设置白名单" class="headerlink" title="clashx设置白名单"></a>clashx设置白名单</h1><p>在mac使用虚拟机虚拟了三台Linux服务器进行开发时，发现设置的host+port无法正常访问服务，而ip+port则可以正常访问。排查了虚拟机端的服务、防火墙设置、host配置以及本机host配置，均没有问题，然后当我退出代理软件后，host+port就可以正常访问了。查看log得知，本地的域名也走了代理，所以需要设置白名单，忽略本地的制定域名，在查询资料后找到了解决方法：</p>
+<ul>
+<li><p>打开终端，新建文件</p>
+<pre><code class="hljs shell">vim ~/.config/clash/proxyIgnoreList.plist</code></pre></li>
+<li><p>输入以下内容</p>
+<pre><code class="hljs xml"><span class="hljs-meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">plist</span> <span class="hljs-meta-keyword">PUBLIC</span> <span class="hljs-meta-string">&quot;-//Apple//DTD PLIST 1.0//EN&quot;</span> <span class="hljs-meta-string">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">plist</span> <span class="hljs-attr">version</span>=<span class="hljs-string">&quot;1.0&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">array</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>192.168.0.0/16<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>10.0.0.0/8<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>172.16.0.0/12<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>127.0.0.1<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>localhost<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>*.local<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>*.crashlytics.com<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+        <span class="hljs-comment">&lt;!--上面的不要删，在下面添加你想要忽略的域名--&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>hadoop201<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>hadoop202<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">string</span>&gt;</span>hadoop203<span class="hljs-tag">&lt;/<span class="hljs-name">string</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">array</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">plist</span>&gt;</span></code></pre></li>
+<li><p>编辑完成之后，重启clashx，之后打开系统偏好设置 &gt; 高级 &gt; 代理，查看 “忽略这些主机与域的代理设置”里有没有你设置的域名。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20221010184540.png" alt="image-20221010184540514"></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>proxy</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux cluster setup</title>
     <url>/2022/04/12/Linux-cluster-setup/</url>
     <content><![CDATA[<h1 id="搭建Linux集群"><a href="#搭建Linux集群" class="headerlink" title="搭建Linux集群"></a>搭建Linux集群</h1><ul>
@@ -20,17 +54,37 @@
 </li>
 <li><p>编辑网络配置文件</p>
 <p>需要更改的地方是把BOOTPROTO=dhcp改为static，另外ONBOOT改为yes，然后添加IPADDR、NETMASK、GATEWAY、DNS1。网络可用的表现是虚拟机能正常上网，能和宿主机互相通信。</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/sysconfig/network-scripts/ifcfg-ens160</span><br></pre></td></tr></table></figure>
+<pre><code class="hljs shell">vim /etc/sysconfig/network-scripts/ifcfg-ens160</code></pre>
 
-<figure class="highlight properties"><table><tr><td class="code"><pre><span class="line"><span class="attr">TYPE</span>=<span class="string">Ethernet</span></span><br><span class="line"><span class="attr">PROXY_METHOD</span>=<span class="string">none</span></span><br><span class="line"><span class="attr">BROWSER_ONLY</span>=<span class="string">no</span></span><br><span class="line"><span class="attr">BOOTPROTO</span>=<span class="string">static</span></span><br><span class="line"><span class="attr">DEFROUTE</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPV4_FAILURE_FATAL</span>=<span class="string">no</span></span><br><span class="line"><span class="attr">IPV6INIT</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPV6_AUTOCONF</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPV6_DEFROUTE</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPV6_FAILURE_FATAL</span>=<span class="string">no</span></span><br><span class="line"><span class="attr">NAME</span>=<span class="string">ens160</span></span><br><span class="line"><span class="attr">UUID</span>=<span class="string">60593f15-8470-433d-933c-c0a1cc25faa3</span></span><br><span class="line"><span class="attr">DEVICE</span>=<span class="string">ens160</span></span><br><span class="line"><span class="attr">ONBOOT</span>=<span class="string">yes</span></span><br><span class="line"><span class="attr">IPADDR</span>=<span class="string">192.168.1.201</span></span><br><span class="line"><span class="attr">NETMASK</span>=<span class="string">255.255.255.0</span></span><br><span class="line"><span class="attr">GATEWAY</span>=<span class="string">192.168.1.1</span></span><br><span class="line"><span class="attr">DNS1</span>=<span class="string">119.29.29.29</span></span><br></pre></td></tr></table></figure>
+<pre><code class="hljs properties"><span class="hljs-attr">TYPE</span>=<span class="hljs-string">Ethernet</span>
+<span class="hljs-attr">PROXY_METHOD</span>=<span class="hljs-string">none</span>
+<span class="hljs-attr">BROWSER_ONLY</span>=<span class="hljs-string">no</span>
+<span class="hljs-attr">BOOTPROTO</span>=<span class="hljs-string">static</span>
+<span class="hljs-attr">DEFROUTE</span>=<span class="hljs-string">yes</span>
+<span class="hljs-attr">IPV4_FAILURE_FATAL</span>=<span class="hljs-string">no</span>
+<span class="hljs-attr">IPV6INIT</span>=<span class="hljs-string">yes</span>
+<span class="hljs-attr">IPV6_AUTOCONF</span>=<span class="hljs-string">yes</span>
+<span class="hljs-attr">IPV6_DEFROUTE</span>=<span class="hljs-string">yes</span>
+<span class="hljs-attr">IPV6_FAILURE_FATAL</span>=<span class="hljs-string">no</span>
+<span class="hljs-attr">NAME</span>=<span class="hljs-string">ens160</span>
+<span class="hljs-attr">UUID</span>=<span class="hljs-string">60593f15-8470-433d-933c-c0a1cc25faa3</span>
+<span class="hljs-attr">DEVICE</span>=<span class="hljs-string">ens160</span>
+<span class="hljs-attr">ONBOOT</span>=<span class="hljs-string">yes</span>
+<span class="hljs-attr">IPADDR</span>=<span class="hljs-string">192.168.1.201</span>
+<span class="hljs-attr">NETMASK</span>=<span class="hljs-string">255.255.255.0</span>
+<span class="hljs-attr">GATEWAY</span>=<span class="hljs-string">192.168.1.1</span>
+<span class="hljs-attr">DNS1</span>=<span class="hljs-string">119.29.29.29</span></code></pre>
 
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl restart network.service</span><br></pre></td></tr></table></figure></li>
+<pre><code class="hljs shell">systemctl restart network.service</code></pre></li>
 <li><p>编辑hostname</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/hostname</span><br></pre></td></tr></table></figure></li>
+<pre><code class="hljs shell">vim /etc/hostname</code></pre></li>
 <li><p>编辑hosts</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/hosts</span><br></pre></td></tr></table></figure></li>
+<pre><code class="hljs shell">vim /etc/hosts</code></pre></li>
 <li><p>关闭防火墙</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 临时关闭</span></span><br><span class="line">systemctl stop firewalld</span><br><span class="line"><span class="meta">#</span><span class="bash"> 永久关闭</span></span><br><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure></li>
+<pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash"> 临时关闭</span>
+systemctl stop firewalld
+<span class="hljs-meta">#</span><span class="bash"> 永久关闭</span>
+systemctl disable firewalld.service</code></pre></li>
 <li><p>至此，单台虚拟机就准备完毕，这个时候将其关机，然后创建完整克隆，然后再改下克隆机的ip，确保虚拟机之间可以互相通信。</p>
 </li>
 </ol>
@@ -40,64 +94,6 @@
       </categories>
       <tags>
         <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo Guide</title>
-    <url>/2019/11/26/hexo-guide/</url>
-    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
-<p>A fast, simple &amp; powerful blog framework, powered by Node.js.</p>
-</blockquote>
-<h2 id="Next主题"><a href="#Next主题" class="headerlink" title="Next主题"></a>Next主题</h2><p><strong>Hexo拥有很多精美主题，我们用的是Next。</strong></p>
-<h3 id="Next-各版本的仓库"><a href="#Next-各版本的仓库" class="headerlink" title="Next 各版本的仓库"></a>Next 各版本的仓库</h3><table>
-<thead>
-<tr>
-<th>年份</th>
-<th>版本</th>
-<th>仓库</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>2014 ~ 2017</td>
-<td>v5</td>
-<td><a href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</a></td>
-</tr>
-<tr>
-<td>2018 ~ 2019</td>
-<td>v6 ~ v7</td>
-<td><a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a></td>
-</tr>
-<tr>
-<td>2020</td>
-<td>v8</td>
-<td><a href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a></td>
-</tr>
-</tbody></table>
-<h3 id="Next与Hexo版本适配关系"><a href="#Next与Hexo版本适配关系" class="headerlink" title="Next与Hexo版本适配关系"></a>Next与Hexo版本适配关系</h3><p><img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211105133647.png" alt="image-20211105133645530"></p>
-<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><ul>
-<li><p>代码地址（hexo相关配置在hexo分支上，发布分支是master）</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/wloverine/wloverine.github.io</span><br></pre></td></tr></table></figure></li>
-<li><p>本地运行 </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure></li>
-<li><p>发布到github</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo clean &amp; hexo g &amp; hexo d</span><br></pre></td></tr></table></figure></li>
-<li><p>写新文章<br>进入博客主目录，输入以下命令</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;新文章&quot;</span></span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h2 id="版本升级"><a href="#版本升级" class="headerlink" title="版本升级"></a>版本升级</h2></li>
-</ul>
-<h3 id="全局升级-Hexo-版本"><a href="#全局升级-Hexo-版本" class="headerlink" title="全局升级 Hexo 版本"></a>全局升级 Hexo 版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 清理NPM缓存</span></span><br><span class="line">$ npm cache clean -f</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局安装版本检测、版本升级工具</span></span><br><span class="line">$ npm install -g npm-check</span><br><span class="line">$ npm install -g npm-upgrade</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局检测哪些模块可以升级，这里可以根据打印的提示信息，手动安装最新版本的模块</span></span><br><span class="line">$ npm-check -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局更新模块</span></span><br><span class="line">$ npm update -g</span><br><span class="line"></span><br><span class="line"><span class="comment"># 全局安装或更新Hexo的最新版本</span></span><br><span class="line">$ npm install --global hexo</span><br></pre></td></tr></table></figure>
-
-<h3 id="博客升级Hexo版本"><a href="#博客升级Hexo版本" class="headerlink" title="博客升级Hexo版本"></a>博客升级Hexo版本</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入博客的根目录</span></span><br><span class="line">$ <span class="built_in">cd</span> /blog-root</span><br><span class="line"></span><br><span class="line"><span class="comment"># 检测Hexo哪些模块可以升级</span></span><br><span class="line">$ npm-check</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除package-lock.json</span></span><br><span class="line"><span class="comment"># rm -rf package-lock.json</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新package.json</span></span><br><span class="line">$ npm-upgrade</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除整个模块目录，这样可以避免很多坑</span></span><br><span class="line">$ rm -rf node_modules</span><br><span class="line"></span><br><span class="line"><span class="comment"># 更新Hexo的模块</span></span><br><span class="line">$ npm update --save</span><br><span class="line"></span><br><span class="line"><span class="comment"># 若出现依赖的问题，用以下命令检查一下，然后把报错的统一修复一下即可</span></span><br><span class="line">$ npm audix</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者强制更新</span></span><br><span class="line">$ npm update --save --force</span><br></pre></td></tr></table></figure>
-
-<h3 id="升级Next主题"><a href="#升级Next主题" class="headerlink" title="升级Next主题"></a>升级Next主题</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 进入主题文件夹</span></span><br><span class="line"><span class="built_in">cd</span> themes</span><br><span class="line"></span><br><span class="line"><span class="comment"># 备份旧版数据</span></span><br><span class="line">mv next next-bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># 拉取新版本代码（由于已经将next主题文件夹内的配置文件分离到根目录，只需拉取代码完全替代老版代码即可，无需修改配置文件）</span></span><br><span class="line">git <span class="built_in">clone</span> xxx</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>code</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -156,9 +152,22 @@
     <url>/2019/08/23/my-first-blog/</url>
     <content><![CDATA[<h2 id="业务情景"><a href="#业务情景" class="headerlink" title="业务情景"></a>业务情景</h2><ul>
 <li>两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。</li>
-<li> 后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上差多少，结果，数据能成功跑完，但是spark任务在结束之后，报了错误：<figure class="highlight apache"><table><tr><td class="code"><pre><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> ERROR client.TransportResponseHandler: Still have <span class="number">1</span> requests outstanding when connection from /<span class="number">192.168.2.12:56274</span> is closed</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> ERROR client.TransportClient: Failed to send RPC <span class="number">4801162101817174823</span> to /<span class="number">192.168.2.14:43434</span>: java.nio.channels.ClosedChannelException</span><br><span class="line"><span class="attribute">java</span>.nio.channels.ClosedChannelException</span><br><span class="line">	<span class="attribute">at</span> io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source)</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> INFO storage.BlockManagerInfo: Removed broadcast_<span class="number">8</span>_piece<span class="number">0</span> <span class="literal">on</span> s<span class="number">2</span>:<span class="number">39066</span> in memory (size: <span class="number">809</span>.<span class="number">3</span> KB, free: <span class="number">5</span>.<span class="number">2</span> GB)</span><br><span class="line"><span class="attribute">19</span>/<span class="number">08</span>/<span class="number">22</span> <span class="number">15</span>:<span class="number">40</span>:<span class="number">22</span> WARN storage.BlockManagerMaster: Failed to remove broadcast <span class="number">8</span> with removeFromMaster = true - Failed to send RPC <span class="number">8112168140978160966</span> to /<span class="number">192.168.2.15:58680</span>: java.nio.channels.ClosedChannelException</span><br><span class="line"><span class="attribute">java</span>.io.IOException: Failed to send RPC <span class="number">8112168140978160966</span> to /<span class="number">192.168.2.15:58680</span>: java.nio.channels.ClosedChannelException</span><br></pre></td></tr></table></figure>
+<li> 后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上差多少，结果，数据能成功跑完，但是spark任务在结束之后，报了错误：<pre><code class="hljs plaintext">19/08/22 15:40:22 ERROR client.TransportResponseHandler: Still have 1 requests outstanding when connection from /192.168.2.12:56274 is closed
+19/08/22 15:40:22 ERROR client.TransportClient: Failed to send RPC 4801162101817174823 to /192.168.2.14:43434: java.nio.channels.ClosedChannelException
+java.nio.channels.ClosedChannelException
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source)
+19/08/22 15:40:22 INFO storage.BlockManagerInfo: Removed broadcast_8_piece0 on s2:39066 in memory (size: 809.3 KB, free: 5.2 GB)
+19/08/22 15:40:22 WARN storage.BlockManagerMaster: Failed to remove broadcast 8 with removeFromMaster = true - Failed to send RPC 8112168140978160966 to /192.168.2.15:58680: java.nio.channels.ClosedChannelException
+java.io.IOException: Failed to send RPC 8112168140978160966 to /192.168.2.15:58680: java.nio.channels.ClosedChannelException</code></pre>
 此时的spark任务已经结束，状态为success，并且最终join后的数据也成功入库了。<span id="more"></span></li>
-<li>网上大部分的解决方案都是修改yarn-site.xml文件的两个参数，但是并没有奏效：<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.pmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.vmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<li>网上大部分的解决方案都是修改yarn-site.xml文件的两个参数，但是并没有奏效：<pre><code class="hljs plaintext">&lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.pmem-check-enabled&lt;/name&gt;
+    &lt;value&gt;false&lt;/value&gt;
+  &lt;/property&gt;
+  &lt;property&gt;
+    &lt;name&gt;yarn.nodemanager.vmem-check-enabled&lt;/name&gt;
+    &lt;value&gt;false&lt;/value&gt;
+  &lt;/property&gt;</code></pre>
 <h2 id="问题修复"><a href="#问题修复" class="headerlink" title="问题修复"></a>问题修复</h2>经过多次尝试，终于找到了两种方式可以解决此问题。</li>
 </ul>
 <ol>
@@ -176,6 +185,107 @@
       <tags>
         <tag>Spark</tag>
         <tag>Hive</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hexo Guide</title>
+    <url>/2019/11/26/hexo-guide/</url>
+    <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>A fast, simple &amp; powerful blog framework, powered by Node.js.</p>
+</blockquote>
+<h2 id="Next主题"><a href="#Next主题" class="headerlink" title="Next主题"></a>Next主题</h2><p><strong>Hexo拥有很多精美主题，我们用的是Next。</strong></p>
+<h3 id="Next-各版本的仓库"><a href="#Next-各版本的仓库" class="headerlink" title="Next 各版本的仓库"></a>Next 各版本的仓库</h3><table>
+<thead>
+<tr>
+<th>年份</th>
+<th>版本</th>
+<th>仓库</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2014 ~ 2017</td>
+<td>v5</td>
+<td><a href="https://github.com/iissnan/hexo-theme-next">https://github.com/iissnan/hexo-theme-next</a></td>
+</tr>
+<tr>
+<td>2018 ~ 2019</td>
+<td>v6 ~ v7</td>
+<td><a href="https://github.com/theme-next/hexo-theme-next">https://github.com/theme-next/hexo-theme-next</a></td>
+</tr>
+<tr>
+<td>2020</td>
+<td>v8</td>
+<td><a href="https://github.com/next-theme/hexo-theme-next">https://github.com/next-theme/hexo-theme-next</a></td>
+</tr>
+</tbody></table>
+<h3 id="Next与Hexo版本适配关系"><a href="#Next与Hexo版本适配关系" class="headerlink" title="Next与Hexo版本适配关系"></a>Next与Hexo版本适配关系</h3><p><img src="https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211105133647.png" alt="image-20211105133645530"></p>
+<h2 id="快速开始"><a href="#快速开始" class="headerlink" title="快速开始"></a>快速开始</h2><ul>
+<li><p>代码地址（hexo相关配置在hexo分支上，发布分支是master）</p>
+<pre><code class="hljs bash">git <span class="hljs-built_in">clone</span> https://github.com/wloverine/wloverine.github.io</code></pre></li>
+<li><p>本地运行 </p>
+<pre><code class="hljs bash">hexo s</code></pre></li>
+<li><p>发布到github</p>
+<pre><code class="hljs bash">hexo clean &amp; hexo g &amp; hexo d</code></pre></li>
+<li><p>写新文章<br>进入博客主目录，输入以下命令</p>
+<pre><code class="hljs bash">hexo new <span class="hljs-string">&quot;新文章&quot;</span></code></pre>
+<span id="more"></span>
+<h2 id="版本升级"><a href="#版本升级" class="headerlink" title="版本升级"></a>版本升级</h2></li>
+</ul>
+<h3 id="全局升级-Hexo-版本"><a href="#全局升级-Hexo-版本" class="headerlink" title="全局升级 Hexo 版本"></a>全局升级 Hexo 版本</h3><pre><code class="hljs bash"><span class="hljs-comment"># 清理NPM缓存</span>
+$ npm cache clean -f
+
+<span class="hljs-comment"># 全局安装版本检测、版本升级工具</span>
+$ npm install -g npm-check
+$ npm install -g npm-upgrade
+
+<span class="hljs-comment"># 全局检测哪些模块可以升级，这里可以根据打印的提示信息，手动安装最新版本的模块</span>
+$ npm-check -g
+
+<span class="hljs-comment"># 全局更新模块</span>
+$ npm update -g
+
+<span class="hljs-comment"># 全局安装或更新Hexo的最新版本</span>
+$ npm install --global hexo</code></pre>
+
+<h3 id="博客升级Hexo版本"><a href="#博客升级Hexo版本" class="headerlink" title="博客升级Hexo版本"></a>博客升级Hexo版本</h3><pre><code class="hljs bash"><span class="hljs-comment"># 进入博客的根目录</span>
+$ <span class="hljs-built_in">cd</span> /blog-root
+
+<span class="hljs-comment"># 检测Hexo哪些模块可以升级</span>
+$ npm-check
+
+<span class="hljs-comment"># 删除package-lock.json</span>
+<span class="hljs-comment"># rm -rf package-lock.json</span>
+
+<span class="hljs-comment"># 更新package.json</span>
+$ npm-upgrade
+
+<span class="hljs-comment"># 删除整个模块目录，这样可以避免很多坑</span>
+$ rm -rf node_modules
+
+<span class="hljs-comment"># 更新Hexo的模块</span>
+$ npm update --save
+
+<span class="hljs-comment"># 若出现依赖的问题，用以下命令检查一下，然后把报错的统一修复一下即可</span>
+$ npm audix
+
+<span class="hljs-comment"># 或者强制更新</span>
+$ npm update --save --force</code></pre>
+
+<h3 id="升级Next主题"><a href="#升级Next主题" class="headerlink" title="升级Next主题"></a>升级Next主题</h3><pre><code class="hljs bash"><span class="hljs-comment"># 进入主题文件夹</span>
+<span class="hljs-built_in">cd</span> themes
+
+<span class="hljs-comment"># 备份旧版数据</span>
+mv next next-bak
+
+<span class="hljs-comment"># 拉取新版本代码（由于已经将next主题文件夹内的配置文件分离到根目录，只需拉取代码完全替代老版代码即可，无需修改配置文件）</span>
+git <span class="hljs-built_in">clone</span> xxx</code></pre>
+
+]]></content>
+      <categories>
+        <category>code</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
