@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Daryl的小站</title>
+  
+  <subtitle>Just shut up!</subtitle>
+  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2022-10-10T10:51:09.637Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>wloverine</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>clashx白名单</title>
+    <link href="http://yoursite.com/2022/10/10/clashx%E7%99%BD%E5%90%8D%E5%8D%95/"/>
+    <id>http://yoursite.com/2022/10/10/clashx%E7%99%BD%E5%90%8D%E5%8D%95/</id>
+    <published>2022-10-10T10:48:19.000Z</published>
+    <updated>2022-10-10T10:51:09.637Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;clashx设置白名单&quot;&gt;&lt;a href=&quot;#clashx设置白名单&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+    <category term="proxy" scheme="http://yoursite.com/tags/proxy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux cluster setup</title>
+    <link href="http://yoursite.com/2022/04/12/Linux-cluster-setup/"/>
+    <id>http://yoursite.com/2022/04/12/Linux-cluster-setup/</id>
+    <published>2022-04-12T09:17:26.000Z</published>
+    <updated>2022-04-12T09:22:50.075Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;搭建Linux集群&quot;&gt;&lt;a href=&quot;#搭建Linux集群&quot; class=&quot;headerlink&quot; title=&quot;搭建Linux集群&quot;&gt;&lt;/a&gt;搭建Linux集群&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;当前主力机是m1芯片的macbook pro，所以linux镜像用的是arm64位的centos7，虚拟机软件选用VMware Fusion。本次目标搭建三台虚拟机，实现网络互通。&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="code" scheme="http://yoursite.com/categories/code/"/>
+    
+    
+    <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>蒜苔肉丝</title>
+    <link href="http://yoursite.com/2021/11/28/suantairousi/"/>
+    <id>http://yoursite.com/2021/11/28/suantairousi/</id>
+    <published>2021-11-27T16:09:48.000Z</published>
+    <updated>2022-02-06T05:30:40.616Z</updated>
+    
+    
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211128003923.png&quot; alt=&quot;image-20211128003343662&quot; style=&quot;zoom: 45%;&quot; /&gt;&lt;/div&gt;</summary>
+    
+    
+    
+    <category term="life" scheme="http://yoursite.com/categories/life/"/>
+    
+    
+    <category term="cook" scheme="http://yoursite.com/tags/cook/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《双城之战》观后感</title>
+    <link href="http://yoursite.com/2021/11/21/shuangchengzhizhan/"/>
+    <id>http://yoursite.com/2021/11/21/shuangchengzhizhan/</id>
+    <published>2021-11-21T14:25:24.000Z</published>
+    <updated>2022-02-06T05:30:20.373Z</updated>
+    
+    
+    <summary type="html">&lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211121221102.png&quot; alt=&quot;image-20211121221100468&quot; style=&quot;zoom: 80%;&quot;  /&gt;&lt;/div&gt;</summary>
+    
+    
+    
+    <category term="life" scheme="http://yoursite.com/categories/life/"/>
+    
+    
+    <category term="观后感" scheme="http://yoursite.com/tags/%E8%A7%82%E5%90%8E%E6%84%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hexo Guide</title>
+    <link href="http://yoursite.com/2019/11/26/hexo-guide/"/>
+    <id>http://yoursite.com/2019/11/26/hexo-guide/</id>
+    <published>2019-11-26T13:57:41.000Z</published>
+    <updated>2022-02-06T05:30:04.922Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;A fast, simple &amp;amp; powerful blog framework, powered by Node.js.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;Next主题&quot;&gt;&lt;a href=&quot;#Next主题&quot; class=&quot;headerlink&quot; title=&quot;Next主题&quot;&gt;&lt;/a&gt;Next主题&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;Hexo拥有很多精美主题，我们用的是Next。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Next-各版本的仓库&quot;&gt;&lt;a href=&quot;#Next-各版本的仓库&quot; class=&quot;headerlink&quot; title=&quot;Next 各版本的仓库&quot;&gt;&lt;/a&gt;Next 各版本的仓库&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;年份&lt;/th&gt;
+&lt;th&gt;版本&lt;/th&gt;
+&lt;th&gt;仓库&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;2014 ~ 2017&lt;/td&gt;
+&lt;td&gt;v5&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/iissnan/hexo-theme-next&quot;&gt;https://github.com/iissnan/hexo-theme-next&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2018 ~ 2019&lt;/td&gt;
+&lt;td&gt;v6 ~ v7&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/theme-next/hexo-theme-next&quot;&gt;https://github.com/theme-next/hexo-theme-next&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;2020&lt;/td&gt;
+&lt;td&gt;v8&lt;/td&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/next-theme/hexo-theme-next&quot;&gt;https://github.com/next-theme/hexo-theme-next&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;h3 id=&quot;Next与Hexo版本适配关系&quot;&gt;&lt;a href=&quot;#Next与Hexo版本适配关系&quot; class=&quot;headerlink&quot; title=&quot;Next与Hexo版本适配关系&quot;&gt;&lt;/a&gt;Next与Hexo版本适配关系&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/wloverine/PicGo/img/20211105133647.png&quot; alt=&quot;image-20211105133645530&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;快速开始&quot;&gt;&lt;a href=&quot;#快速开始&quot; class=&quot;headerlink&quot; title=&quot;快速开始&quot;&gt;&lt;/a&gt;快速开始&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;代码地址（hexo相关配置在hexo分支上，发布分支是master）&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;git clone https://github.com/wloverine/wloverine.github.io
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;本地运行 &lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;hexo s
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;发布到github&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;hexo clean &amp;amp; hexo g &amp;amp; hexo d
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;写新文章&lt;br&gt;进入博客主目录，输入以下命令&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;hexo new &amp;quot;新文章&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;</summary>
+    
+    
+    
+    <category term="code" scheme="http://yoursite.com/categories/code/"/>
+    
+    
+    <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次spark大表join问题</title>
+    <link href="http://yoursite.com/2019/08/23/my-first-blog/"/>
+    <id>http://yoursite.com/2019/08/23/my-first-blog/</id>
+    <published>2019-08-23T07:58:54.000Z</published>
+    <updated>2022-02-06T05:28:26.587Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;业务情景&quot;&gt;&lt;a href=&quot;#业务情景&quot; class=&quot;headerlink&quot; title=&quot;业务情景&quot;&gt;&lt;/a&gt;业务情景&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;两表根据一个key进行连接，一张表从hive中读取，数据量4千万，一张表从mongo中读取，数据量87万。起初，把小表直接进行广播变量，然后在大表的map算子里面根据key一条一条连接，这样速度很快。&lt;/li&gt;
+&lt;li&gt;后来小表数据源改变了，数据量上升到1千万，此时再用之前的方式去跑spark任务，效率低了很多。然后我把两个数据源的表都注册成临时表，写sparksql作连接，想看看这样和我之前的写法时间上差多少，结果，数据能成功跑完，但是spark任务在结束之后，报了错误：&lt;pre&gt;&lt;code&gt;19/08/22 15:40:22 ERROR client.TransportResponseHandler: Still have 1 requests outstanding when connection from /192.168.2.12:56274 is closed
+19/08/22 15:40:22 ERROR client.TransportClient: Failed to send RPC 4801162101817174823 to /192.168.2.14:43434: java.nio.channels.ClosedChannelException
+java.nio.channels.ClosedChannelException
+  at io.netty.channel.AbstractChannel$AbstractUnsafe.write(...)(Unknown Source)
+19/08/22 15:40:22 INFO storage.BlockManagerInfo: Removed broadcast_8_piece0 on s2:39066 in memory (size: 809.3 KB, free: 5.2 GB)
+19/08/22 15:40:22 WARN storage.BlockManagerMaster: Failed to remove broadcast 8 with removeFromMaster = true - Failed to send RPC 8112168140978160966 to /192.168.2.15:58680: java.nio.channels.ClosedChannelException
+java.io.IOException: Failed to send RPC 8112168140978160966 to /192.168.2.15:58680: java.nio.channels.ClosedChannelException
+&lt;/code&gt;&lt;/pre&gt;
+此时的spark任务已经结束，状态为success，并且最终join后的数据也成功入库了。</summary>
+    
+    
+    
+    <category term="code" scheme="http://yoursite.com/categories/code/"/>
+    
+    
+    <category term="Spark" scheme="http://yoursite.com/tags/Spark/"/>
+    
+    <category term="Hive" scheme="http://yoursite.com/tags/Hive/"/>
+    
+  </entry>
+  
+</feed>
